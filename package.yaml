@@ -1,5 +1,5 @@
 name:                aHaskellPriori
-version:             0.1.0.0
+version:             2019.10.19.1
 github:              "Denbergvanthijs/aHaskellPriori"
 license:             Apache-2.0
 author:              "Thijs van den Berg"
@@ -21,6 +21,8 @@ description:         Please see the README on GitHub at <https://github.com/Denb
 
 dependencies:
 - base >= 4.7 && < 5
+- containers
+- matrix
 
 library:
   source-dirs: src
