@@ -5,7 +5,7 @@ import qualified Data.Set as Set
 import qualified Data.Matrix as Matrix
 
 someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+someFunc = putStrLn "someStr"
 
 bestandLezen :: FilePath -> IO ()
 bestandLezen path = do

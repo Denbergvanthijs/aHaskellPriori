@@ -1,11 +1,15 @@
 # Changelog for aHaskellPriori
 
+## 2019.10.20.1
+- Uitleg van Apriori algoritme en de eigen implementatie van het algoritme
+- Bronvermelding uitgebreid
+
 ## 2019.10.19.1
 - Dataset en bronvermelding toegevoegd
 - Kortere dataset aangemaakt, sneller voor debuggen
 - Datasets kunnen worden uitgelezen met functie `bestandLezen`
 - Alle unieke items van de transacties kunnen worden berekend door `recursiveUnion`.
-Als input wordt gevraagd naar een lijst van sets. Iedere set representeerd een transactie.
+Als input wordt gevraagd naar een lijst van sets. Iedere set representeert een transactie.
 - De unieke set kan worden omgezet naar een oplopend gesorteerde lijst met de functie `setToAscList`.
 Hierdoor wordt het mogelijk om de producten te vinden die horen bij een bepaalde index in de
 verschillende matrixen.
