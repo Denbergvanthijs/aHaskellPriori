@@ -1,5 +1,11 @@
 # Changelog for aHaskellPriori
 
+## 2019.10.22.1
+- Extra bronvermelding toegevoegd
+- Het berekenen van de support, confidence en lift van een set producten is nu mogelijk
+- Extra bestand in `src/` aangemaakt om berekeningen voor support, confidence, lift te spliten van de matrixen
+- Variabelen aangemaakt in `main.hs` om het debuggen te vergemakkelijken
+
 ## 2019.10.20.1
 - Uitleg van Apriori algoritme en de eigen implementatie van het algoritme
 - Bronvermelding uitgebreid
