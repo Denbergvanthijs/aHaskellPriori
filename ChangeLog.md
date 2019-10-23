@@ -1,5 +1,14 @@
 # Changelog for aHaskellPriori
 
+## 2019.10.23.1
+- calcSupport leesbaarder gemaakt
+- Het beste product `Y` bij een product `X` kan nu automatisch worden opgevraagd. Gebruikmakende van `calcLift`
+- Functie toegevoegd om de tuple met hoogste fst te returnen uit een lijst met tuples
+- Typedeclaraties verbeterd van o.a. setToAscList en setToListOfSets
+- Debugdata in `main.hs` realistischer gemaakt
+- File `Tools.hs` aangemaakt om de daadwerkelijke berekeningen van de minder belangrijke functies te scheiden
+- Imports verbeterd: Set.Set a is nu Set a bijvoorbeeld 
+
 ## 2019.10.22.1
 - Extra bronvermelding toegevoegd
 - Het berekenen van de support, confidence en lift van een set producten is nu mogelijk

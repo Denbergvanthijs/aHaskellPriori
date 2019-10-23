@@ -129,6 +129,7 @@ aanbevelen aangezien deze de hoogste lift hebben met product `D`.
 - https://stackabuse.com/association-rule-mining-via-apriori-algorithm-in-python/
 - https://stackoverflow.com/questions/3275193/whats-the-right-way-to-divide-two-int-values-to-obtain-a-float
 - https://stackoverflow.com/questions/24234517/understanding-withfile-with-example
+- https://stackoverflow.com/questions/52910840/haskell-finding-maximum-value-in-a-list-of-tuples
 
 ### Dataset:
 - https://drive.google.com/file/d/1y5DYn0dGoSbC22xowBq2d4po6h1JxcTQ/view

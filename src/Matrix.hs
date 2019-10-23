@@ -1,6 +1,7 @@
-module MatrixLib where
+module Matrix where
 
 import Lib
+import Tools
 
 import qualified Data.Set as Set
 import qualified Data.Matrix as Matrix

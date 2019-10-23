@@ -1,7 +1,7 @@
 module Main where
 
 import Lib
-import MatrixLib
+import Matrix
 
 import qualified Data.Set as Set
 
@@ -9,17 +9,17 @@ main :: IO ()
 main = bestandLezen "data/store_data_short.csv"
 
 -- Variabelen om mee te debuggen
-setA = Set.singleton "A"
-setB = Set.singleton "B"
-setC = Set.singleton "C"
-setD = Set.singleton "D"
-setE = Set.singleton "E"
+setA = Set.singleton "Appel"
+setB = Set.singleton "Banaan"
+setC = Set.singleton "Citroen"
+setD = Set.singleton "Druif"
+setE = Set.singleton "Eggplant"
 
-setAB = Set.fromList ["A", "B"]
-setDB = Set.fromList ["D", "B"]
+setAB = Set.fromList ["Appel", "Banaan"]
+setDB = Set.fromList ["Druif", "Banaan"]
 
-setT1 = Set.fromList ["A", "B", "C", "D", "E"]
-setT2 = Set.fromList ["B", "C", "E"]
-setT3 = Set.fromList ["A", "E"]
+setT1 = Set.fromList ["Appel", "Banaan", "Citroen", "Druif", "Eggplant"]
+setT2 = Set.fromList ["Banaan", "Citroen", "Eggplant"]
+setT3 = Set.fromList ["Appel", "Eggplant"]
 
 listTrans = [setT1, setT2, setT3]
