@@ -1,14 +1,14 @@
 module Tools where
 
-import Data.Set
+import           Data.Set
 
-import qualified Data.List as List
-import qualified Data.Ord as Ord
 import qualified Data.Function as Function
+import qualified Data.List     as List
+import qualified Data.Ord      as Ord
 
 -- Maakt een set met alle unieke producten in een lijst met transacties
 recursiveUnion :: Ord a => [Set a] -> Set a
-recursiveUnion [] = empty  -- Lege Set
+recursiveUnion []     = empty  -- Lege Set
 recursiveUnion (x:xs) = x `union` recursiveUnion xs
 
 -- Veranderd een set met elementen om naar een lijst met elementen

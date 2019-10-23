@@ -1,7 +1,7 @@
 module Main where
 
-import Lib
-import Matrix
+import           Lib
+import           Matrix
 
 import qualified Data.Set as Set
 

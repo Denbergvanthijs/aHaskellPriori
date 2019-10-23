@@ -1,5 +1,8 @@
 # Changelog for aHaskellPriori
 
+## 2019.10.23.2
+- Code geformat met Stylish Haskell
+
 ## 2019.10.23.1
 - calcSupport leesbaarder gemaakt
 - Het beste product `Y` bij een product `X` kan nu automatisch worden opgevraagd. Gebruikmakende van `calcLift`

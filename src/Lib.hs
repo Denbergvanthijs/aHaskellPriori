@@ -1,12 +1,12 @@
 module Lib where
 
-import Tools
+import           Tools
 
-import System.IO
-import Data.Set
+import           Data.Set
+import           System.IO
 
 import qualified Data.List as List
-import qualified Data.Ord as Ord
+import qualified Data.Ord  as Ord
 
 --credits: https://stackoverflow.com/questions/24234517/understanding-withfile-with-example
 bestandLezen :: FilePath -> IO ()

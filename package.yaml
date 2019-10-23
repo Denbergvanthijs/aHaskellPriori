@@ -7,8 +7,8 @@ maintainer:          "denbergvanthijs@gmail.com"
 copyright:           "2019 Thijs van den Berg"
 
 extra-source-files:
-- README.md
-- ChangeLog.md
+  - README.md
+  - ChangeLog.md
 
 # Metadata used when publishing your package
 # synopsis:            Apriori algoritm in Haskell
@@ -20,9 +20,9 @@ extra-source-files:
 description:         Please see the README on GitHub at <https://github.com/Denbergvanthijs/aHaskellPriori#readme>
 
 dependencies:
-- base >= 4.7 && < 5
-- containers
-- matrix
+  - base >= 4.7 && < 5
+  - containers
+  - matrix
 
 library:
   source-dirs: src
@@ -32,19 +32,19 @@ executables:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
     dependencies:
-    - aHaskellPriori
+      - aHaskellPriori
 
 tests:
   aHaskellPriori-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
     dependencies:
-    - aHaskellPriori
+      - aHaskellPriori

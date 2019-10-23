@@ -1,10 +1,10 @@
 module Matrix where
 
-import Lib
-import Tools
+import           Lib
+import           Tools
 
-import qualified Data.Set as Set
 import qualified Data.Matrix as Matrix
+import qualified Data.Set    as Set
 
 -- Returned de lengte van een set
 setLen :: Set.Set a -> Int
