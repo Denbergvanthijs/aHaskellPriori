@@ -1,5 +1,8 @@
 # Changelog for aHaskellPriori
 
+## 2019.10.24.1
+- Documentatie wordt in de goede map aangemaakt door `stack haddock --haddock-arguments "-o docs"`
+
 ## 2019.10.23.2
 - Code geformat met Stylish Haskell
 
