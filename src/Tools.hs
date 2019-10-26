@@ -1,29 +1,32 @@
+-- | Module Tools bevat alle hulpmiddelen om de hoofdfuncties in `Lib` te laten werken.
+
 module Tools where
 
-import           Data.Set
+import           Data.Set hiding (foldr)
+import           Data.List (foldr, maximumBy)
+import           Data.Function (on)
+import           Data.Ord (comparing)
 
-import qualified Data.Function as Function
-import qualified Data.List     as List
-import qualified Data.Ord      as Ord
-
--- Maakt een set met alle unieke producten in een lijst met transacties
+-- | Fold een lijst met transacties zodat alle unieke producten overblijven
+--
+--   Fold was eerst zelf uitgeschreven:
+-- @ recursiveUnion (x:xs) = x \`union\` recursiveUnion xs @
 recursiveUnion :: Ord a => [Set a] -> Set a
-recursiveUnion []     = empty  -- Lege Set
-recursiveUnion xs =  List.foldr union empty xs
+recursiveUnion [] = empty
+recursiveUnion xs = foldr union empty xs
 
--- Veranderd een set met elementen om naar een lijst met elementen
-setToAscList :: Ord a => Set a -> [a]
-setToAscList = toAscList -- Set.toAscList
-
--- Veranderd een set met elementen naar een lijst met set per element
+-- | Veranderd een set van elementen naar een gesoorteerde lijst van (Set) singletons
 setToListOfSets :: Ord a => Set a -> [Set a]
-setToListOfSets set = [singleton product | product <- setToAscList set]
+setToListOfSets set = [ singleton product | product <- toAscList set ]
 
--- credits: stackoverflow.com/questions/3275193/whats-the-right-way-to-divide-two-int-values-to-obtain-a-float
+-- | Deelt twee integers en geeft een float terug
+--
+--   Credits: <stackoverflow.com/questions/3275193/whats-the-right-way-to-divide-two-int-values-to-obtain-a-float>
 floatDiv :: Int -> Int -> Double
-floatDiv = (/) `Function.on` fromIntegral
+floatDiv = (/) `on` fromIntegral
 
--- Credits: stackoverflow.com/questions/52910840/haskell-finding-maximum-value-in-a-list-of-tuples
--- Returned een tuple met de maximale fst uit een lijst met tuples
+-- | Returned een tuple met de maximale first uit een lijst met tuples
+--
+--   Credits: <stackoverflow.com/questions/52910840/haskell-finding-maximum-value-in-a-list-of-tuples>
 listOfTuplesMax :: Ord a => [(a, b)] -> (a, b)
-listOfTuplesMax = List.maximumBy (Ord.comparing fst)
+listOfTuplesMax = maximumBy $ comparing fst

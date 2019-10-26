@@ -1,6 +1,11 @@
 # aHaskellPriori
 Apriori algorithm in Haskell
 
+De documentatie is te vinden in `docs/index.html`
+
+TODO:
+- Zorgen dat `bestLift` meerdere producten returned als de lift hetzelfde is.
+
 © [Thijs van den Berg](https://github.com/Denbergvanthijs/)
 
 ### Werking Apriori algoritme:

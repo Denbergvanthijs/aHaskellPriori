@@ -1,5 +1,10 @@
 # Changelog for aHaskellPriori
 
+## 2019.10.26.3
+- Documentatie gemaakt voor alle bestanden in `src/`
+- Guards toegevoegd aan `Lib` zodat foute waardes worden afgevangen
+- Imports in `Tools` en andere bestanden verbeterd en efficienter gemaakt
+
 ## 2019.10.26.2
 - Eerste test met VScode en Hlint
 

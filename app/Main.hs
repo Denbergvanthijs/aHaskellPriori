@@ -1,9 +1,6 @@
 module Main where
 
-import           Datatypes
-import           DatatypesOld
 import           Lib
-import           Matrix
 
 main :: IO ()
 main = do
