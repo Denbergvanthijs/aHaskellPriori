@@ -8,9 +8,8 @@ import           System.IO
 import qualified Data.List as List
 import qualified Data.Ord  as Ord
 
---credits: https://stackoverflow.com/questions/24234517/understanding-withfile-with-example
-
 -- | Leest een bestand met transacties in en print iedere transactie
+--  credits: https://stackoverflow.com/questions/24234517/understanding-withfile-with-example
 bestandLezen :: FilePath -> IO ()
 bestandLezen path = do
                         handle <- openFile path ReadMode
