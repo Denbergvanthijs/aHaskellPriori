@@ -9,11 +9,11 @@ import qualified Data.Ord      as Ord
 -- Maakt een set met alle unieke producten in een lijst met transacties
 recursiveUnion :: Ord a => [Set a] -> Set a
 recursiveUnion []     = empty  -- Lege Set
-recursiveUnion (x:xs) = x `union` recursiveUnion xs
+recursiveUnion xs =  List.foldr union empty xs
 
 -- Veranderd een set met elementen om naar een lijst met elementen
 setToAscList :: Ord a => Set a -> [a]
-setToAscList set = toAscList set -- Set.toAscList
+setToAscList = toAscList -- Set.toAscList
 
 -- Veranderd een set met elementen naar een lijst met set per element
 setToListOfSets :: Ord a => Set a -> [Set a]
@@ -26,4 +26,4 @@ floatDiv = (/) `Function.on` fromIntegral
 -- Credits: stackoverflow.com/questions/52910840/haskell-finding-maximum-value-in-a-list-of-tuples
 -- Returned een tuple met de maximale fst uit een lijst met tuples
 listOfTuplesMax :: Ord a => [(a, b)] -> (a, b)
-listOfTuplesMax list = List.maximumBy (Ord.comparing fst) list
+listOfTuplesMax = List.maximumBy (Ord.comparing fst)

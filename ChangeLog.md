@@ -1,5 +1,8 @@
 # Changelog for aHaskellPriori
 
+## 2019.10.26.2
+- Eerste test met VScode en Hlint
+
 ## 2019.10.26.1
 - Main.hs aangepast, begin gemaakt aan het menu
 - Variabelen voor debuggen in `DatatypesOld.hs` gezet

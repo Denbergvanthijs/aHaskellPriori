@@ -19,19 +19,19 @@ bestandLezen path = do
 
 -- | Berekend de support van een set: Support(X).
 --  De set X kan uit één of meerdere producten bestaan.
-calcSupport :: Ord a => Set a -> [Set a] -> Double
-calcSupport setX transacties = length [1 | t <- transacties, setX == (setX `intersection` t)] `floatDiv` length transacties
+support :: Ord a => Set a -> [Set a] -> Double
+support setX transacties = length [1 | t <- transacties, setX == (setX `intersection` t)] `floatDiv` length transacties
 
 -- | Berekend de confidence van een set: Confidence(X -> Y)
 -- De sets X en Y kunnen uit één of meerdere producten bestaan
-calcConf :: Ord a => Set a -> Set a -> [Set a] -> Double
-calcConf setX setY transacties = (calcSupport (setX `union` setY) transacties) / (calcSupport setX transacties)
+confidence :: Ord a => Set a -> Set a -> [Set a] -> Double
+confidence setX setY transacties = support (setX `union` setY) transacties / support setX transacties
 
 -- | Berekend de lift van een set: Lift(X->Y)
 -- De sets X en Y kunnen uit één of meerdere producten bestaan
-calcLift :: Ord a => Set a -> Set a -> [Set a] -> Double
-calcLift setX setY transacties = (calcConf setX setY transacties) / (calcSupport setY transacties)
+lift :: Ord a => Set a -> Set a -> [Set a] -> Double
+lift setX setY transacties = confidence setX setY transacties / support setY transacties
 
 -- | Berekend de beste Y voor de formule: Lift(X->Y)
-calcBestLift :: Ord a => Set a -> [Set a] -> (Double, Set a)
-calcBestLift setX transacties = listOfTuplesMax [(calcLift setX setY transacties, setY) | setY <- setToListOfSets $ recursiveUnion transacties, setY /= setX]
+bestLift :: Ord a => Set a -> [Set a] -> (Double, Set a)
+bestLift setX transacties = listOfTuplesMax [(lift setX setY transacties, setY) | setY <- setToListOfSets $ recursiveUnion transacties, setY /= setX]

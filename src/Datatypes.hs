@@ -2,9 +2,9 @@ module Datatypes where
 
 import           Data.Set (Set, fromList, singleton)
 
-data Product = Product (Set [Char]) deriving (Show, Eq, Ord)
-data Transactie = Transactie (Set Product) deriving (Show, Eq, Ord)
-data Transacties = Transacties [Transactie] deriving (Show, Eq, Ord)
+newtype Product = Product (Set String) deriving (Show, Eq, Ord)
+newtype Transactie = Transactie (Set Product) deriving (Show, Eq, Ord)
+newtype Transacties = Transacties [Transactie] deriving (Show, Eq, Ord)
 
 -- | Variabelen om mee te debuggen
 prodA = Product $ singleton "Appel"
