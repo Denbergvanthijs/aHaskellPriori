@@ -1,14 +1,23 @@
 # aHaskellPriori
+
 Apriori algorithm in Haskell
 
-De documentatie is te vinden in `docs/index.html`
+De documentatie is te vinden in `docs/index.html`.
+Deze is aan te maken via `stack haddock --haddock-arguments "-o docs"`
+Het script kan uitgevoerd worden door `stack ghci` en vervolgens `main` uit te voeren.
+
+==========
 
 TODO:
+
 - Zorgen dat `bestLift` meerdere producten returned als de lift hetzelfde is.
+- Confidence van een leeg Product naar _ moet 0.0 opleveren ipv NaN.
+- Lift van een leeg Product naar _ moet 0.0 opleveren ipv NaN.
 
 © [Thijs van den Berg](https://github.com/Denbergvanthijs/)
 
-### Werking Apriori algoritme:
+## Werking Apriori algoritme:
+
 Het Apriori algoritme kan productaanbevelingen leveren voor klanten gebaseerd op 
 historische data. In feite berekend het algoritme voor iedere set van 
 twee producten haar populariteit. Tevens berekend het algoritme hoe veel vaker een product `Y` samen 
@@ -16,14 +25,16 @@ met een ander product `X` wordt verkocht dan dat product `X` met iets anders of 
 Door te voorspellen welk product `Y` het beste bij product `X` past kunnen aanbevelingen worden gedaan.
 
 Het algoritme bestaat uit de volgende drie begrippen:
-- Support
-    - In hoeveel transacties komen producten `X` en `Y` samen voor?
-- Confidence
-    - Wat is de kans dat product `Y` ook wordt gekocht als `X` wordt gekocht?
-- Lift
-    - Hoeveel maal vaker wordt `Y` gekocht als `X` wordt gekocht? (Ratio)
 
-### Implementatie Apriori algoritme:
+- Support
+  - In hoeveel transacties komen producten `X` en `Y` samen voor?
+- Confidence
+  - Wat is de kans dat product `Y` ook wordt gekocht als `X` wordt gekocht?
+- Lift
+  - Hoeveel maal vaker wordt `Y` gekocht als `X` wordt gekocht? (Ratio)
+
+## Implementatie Apriori algoritme:
+
 De huidige implementatie van het algoritme maakt gebruik van drie matrixen. Één voor support, één voor
 confidence en één voor lift. Iedere rij in de matrixen staat voor een uniek product `X`. 
 Aanbevelingen worden gemaakt voor dit product `X`. Iedere kolom van de matrixen staat voor een
@@ -40,7 +51,8 @@ een transactie voor.
 | 2 |   | x | x |   | x |
 | 3 | x |   | x |   | x |
 
-#### Support:
+### Support
+
 De support van ieder individueel product is gemakkelijk te berekenen. Dit is het aantal maal dat het
 individuele product voorkomt in de transacties, gedeeld door het totaal aantal transacties. Voor 
 producten `A` en `B` is de support bijvoorbeeld `2/3`. Voor product `E` is de support `3/3`.
@@ -49,7 +61,8 @@ De support voor iedere combinatie van twee producten is ook gemakkelijk te berek
  `(A ⋂ C)` is de support `2/3` aangezien deze twee producten -samen- in twee van de drie transacties zijn
  gekocht. Alle berekeningen kunnen nu worden ingevuld in de support-matrix:
 
-##### Halve support-matrix
+#### Halve support-matrix
+
 |   |  A  |  B  |  C  |  D  |  E  |
 |---|-----|-----|-----|-----|-----|
 | A | 2/3 | 1/3 | 2/3 | 1/3 | 2/3 |
@@ -64,7 +77,7 @@ support-matrix te berekenen kan de transpositie van de support-matrix worden opg
 (De diagonale waardes dienen door het optellen door twee te worden gedeeld maar dit is een 
 programmeeruitwerking waar wij ons nu niet mee bezig houden.)
 
-##### Definitieve support-matrix:
+#### Definitieve support-matrix
 
 |   |  A  |  B  |  C  |  D  |  E  |
 |---|-----|-----|-----|-----|-----|
@@ -74,7 +87,8 @@ programmeeruitwerking waar wij ons nu niet mee bezig houden.)
 | D | 1/3 | 1/3 | 1/3 | 1/3 | 1/3 |
 | E | 2/3 | 2/3 |  1  | 1/3 |  1  |
 
-#### Confidence:
+### Confidence
+
 De confidence van `(X → Y)` is anders dan de confidence van `(Y → X)`. Mede hierom dient er een volledig gevulde
 support-matrix te worden gemaakt bij de vorige stap. De confidence van `(X → Y)` wordt berekend door de support van 
 `(X ⋂ Y)` te delen door de support van `X`.
@@ -86,7 +100,7 @@ De confidence van `(D → C)` is echter `1`.
 
 Alle berekende waardes worden vervolgens opgeslagen in een confidence-matrix.
 
-##### Confidence-matrix:
+#### Confidence-matrix
 
 |   |  A  |  B  | C |  D  | E |
 |---|-----|-----|---|-----|---|
@@ -99,7 +113,8 @@ Alle berekende waardes worden vervolgens opgeslagen in een confidence-matrix.
 Aangezien `C` en `E` in iedere transactie voorkomt is de confidence van `(X → C)` en `(X → E)` altijd `1`.
 De diagonale lijn gevuld met x-en zegt niks. De confidence van `(X → X)` zegt immers niks.
 
-#### Lift:
+### Lift
+
 De laatste stap van het algoritme is de lift berekenen voor iedere `(X → Y)`. Aangezien in deze formule de confidence
 wordt gebruikt, geldt ook hier dat `(X → Y)` niet hetzelfde is als `(Y → X)`. De formule voor de lift van `(X → Y)`
 is de confidence van `(X → Y)` gedeeld door de support van `Y`.
@@ -108,8 +123,8 @@ De lift van `(A → D)` is bijvoorbeeld `1.5` aangezien de confidence van `(A �
 van `D` gelijk is aan `1/3`. `0.5` gedeeld door `1/3` komt uit op `1.5`. Ook bij deze stap worden alle berekeningen
 weer opgeslagen in een matrix.
 
-##### Lift-matrix:
- 
+#### Lift-matrix
+
 |   |   A  |   B  | C |  D  | E |
 |---|------|------|---|-----|---|
 | A |   x  | 0.75 | 1 | 1.5 | 1 |
@@ -120,7 +135,8 @@ weer opgeslagen in een matrix.
 
 Hoe groter de dataset, hoe beter de waardes zijn uiteraard.
 
-#### Resultaat
+### Resultaat
+
 Door de lift-matrix wordt het mogelijk om voor ieder product `X` een product `Y` aan te kunnen bevelen. Door in de
 lift-matrix de rij van product `X` te selecteren en vervolgens het product `Y` met de grootste lift te pakken
 kan de beste aanbeveling worden gedaan.
@@ -128,13 +144,15 @@ kan de beste aanbeveling worden gedaan.
 Stel: een klant heeft product `D` in zijn of haar online winkelwagentje. Het algoritme zal producten `A` en `B`
 aanbevelen aangezien deze de hoogste lift hebben met product `D`.
 
-### Bronvermelding:
-- http://learnyouahaskell.com/input-and-output
-- https://en.wikipedia.org/wiki/Association_rule_learning
-- https://stackabuse.com/association-rule-mining-via-apriori-algorithm-in-python/
-- https://stackoverflow.com/questions/3275193/whats-the-right-way-to-divide-two-int-values-to-obtain-a-float
-- https://stackoverflow.com/questions/24234517/understanding-withfile-with-example
-- https://stackoverflow.com/questions/52910840/haskell-finding-maximum-value-in-a-list-of-tuples
+### Bronvermelding
 
-### Dataset:
-- https://drive.google.com/file/d/1y5DYn0dGoSbC22xowBq2d4po6h1JxcTQ/view
+- <http://learnyouahaskell.com/input-and-output>
+- <https://en.wikipedia.org/wiki/Association_rule_learning>
+- <https://stackabuse.com/association-rule-mining-via-apriori-algorithm-in-python/>
+- <https://stackoverflow.com/questions/3275193/whats-the-right-way-to-divide-two-int-values-to-obtain-a-float>
+- <https://stackoverflow.com/questions/24234517/understanding-withfile-with-example>
+- <https://stackoverflow.com/questions/52910840/haskell-finding-maximum-value-in-a-list-of-tuples>
+
+### Dataset
+
+- <https://drive.google.com/file/d/1y5DYn0dGoSbC22xowBq2d4po6h1JxcTQ/view>

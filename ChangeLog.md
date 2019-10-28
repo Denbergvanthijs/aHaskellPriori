@@ -1,25 +1,38 @@
 # Changelog for aHaskellPriori
 
+## 2019.10.28.1
+
+- `Datatypes.hs` werkend gekregen, `DatatypesOld.hs` is verwijderd
+- Veel functies herschreven zodat deze met `Product`, `Transactie` en `Transacties` datatypes om kunnen gaan
+- TODO-list uitgebreid in `README.md`
+- Markdown in `ChangeLog.md` en `README.md` verbeterd
+
 ## 2019.10.26.3
+
 - Documentatie gemaakt voor alle bestanden in `src/`
 - Guards toegevoegd aan `Lib` zodat foute waardes worden afgevangen
 - Imports in `Tools` en andere bestanden verbeterd en efficienter gemaakt
 
 ## 2019.10.26.2
+
 - Eerste test met VScode en Hlint
 
 ## 2019.10.26.1
+
 - Main.hs aangepast, begin gemaakt aan het menu
 - Variabelen voor debuggen in `DatatypesOld.hs` gezet
 - `Datatypes.hs` bevatten de nieuwe datatypes `Product`, `Transactie`, `Transacties`. Helaas nog niet werkend
 
 ## 2019.10.24.1
+
 - Documentatie wordt in de goede map aangemaakt door `stack haddock --haddock-arguments "-o docs"`
 
 ## 2019.10.23.2
+
 - Code geformat met Stylish Haskell
 
 ## 2019.10.23.1
+
 - calcSupport leesbaarder gemaakt
 - Het beste product `Y` bij een product `X` kan nu automatisch worden opgevraagd. Gebruikmakende van `calcLift`
 - Functie toegevoegd om de tuple met hoogste fst te returnen uit een lijst met tuples
@@ -29,16 +42,19 @@
 - Imports verbeterd: Set.Set a is nu Set a bijvoorbeeld 
 
 ## 2019.10.22.1
+
 - Extra bronvermelding toegevoegd
 - Het berekenen van de support, confidence en lift van een set producten is nu mogelijk
 - Extra bestand in `src/` aangemaakt om berekeningen voor support, confidence, lift te spliten van de matrixen
 - Variabelen aangemaakt in `main.hs` om het debuggen te vergemakkelijken
 
 ## 2019.10.20.1
+
 - Uitleg van Apriori algoritme en de eigen implementatie van het algoritme
 - Bronvermelding uitgebreid
 
 ## 2019.10.19.1
+
 - Dataset en bronvermelding toegevoegd
 - Kortere dataset aangemaakt, sneller voor debuggen
 - Datasets kunnen worden uitgelezen met functie `bestandLezen`

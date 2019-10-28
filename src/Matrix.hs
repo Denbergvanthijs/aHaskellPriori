@@ -20,8 +20,8 @@ emptySupportMatrix :: Num b => Set.Set a -> Matrix.Matrix b
 emptySupportMatrix a = Matrix.zero (setLen a) (setLen a)
 
 -- | Berekend alle unieke combinaties tussen setX en transacties
-zipSupport setX transacties = zip (replicate (setLen $ recursiveUnion transacties) setX) [ Set.singleton y | y <- Set.toAscList $ recursiveUnion transacties ]
+-- zipSupport setX transacties = zip (replicate (setLen $ recursiveUnion transacties) setX) [ Set.singleton y | y <- Set.toAscList $ recursiveUnion transacties ]
 
 -- | Berekend alle sets tussen setX en transacties
 --   Als er per product een unionZip word berekend zijn er genoeg gegevens om het volledige matrix te vullen.
-unionZip setX transacties = [ a `Set.union` b | (a, b) <- zipSupport setX transacties ] -- Alle unieke combinaties met x
+-- unionZip setX transacties = [ a `Set.union` b | (a, b) <- zipSupport setX transacties ] -- Alle unieke combinaties met x

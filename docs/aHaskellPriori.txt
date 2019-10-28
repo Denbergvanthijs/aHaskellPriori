@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/Denbergvanthijs/aHaskellPriori#readme</a>
 @package aHaskellPriori
-@version 2019.10.26.3
+@version 2019.10.28.1
 
 
 -- | Module Datatypes bevat de nieuwe versie van alle data om mee te testen
@@ -14,11 +14,15 @@
 --   nog niet met de functies uit <tt>Lib</tt>.
 module Datatypes
 newtype Product
-Product :: Set String -> Product
+Product :: String -> Product
 newtype Transactie
 Transactie :: Set Product -> Transactie
 newtype Transacties
 Transacties :: [Transactie] -> Transacties
+data KeuzeOutput
+Waarde :: Double -> KeuzeOutput
+WaardeProduct :: (Double, Product) -> KeuzeOutput
+Foutief :: String -> KeuzeOutput
 
 -- | Product om mee te debuggen
 prodA :: Product
@@ -35,6 +39,9 @@ prodD :: Product
 -- | Product om mee te debuggen
 prodE :: Product
 
+-- | Product dat niet voorkomt in de transacties om mee te debuggen
+prodF :: Product
+
 -- | Subset van een transactie om mee te debuggen
 transAB :: Transactie
 
@@ -50,10 +57,11 @@ transT2 :: Transactie
 -- | Transactie om mee te debuggen
 transT3 :: Transactie
 
--- | Transacties om mee te debuggen
+-- | Lijst van Transactie om mee te debuggen
 --   
 --   Deze variabele moet een dataset simuleren.
 alleTrans :: Transacties
+instance GHC.Show.Show Datatypes.KeuzeOutput
 instance GHC.Classes.Ord Datatypes.Transacties
 instance GHC.Classes.Eq Datatypes.Transacties
 instance GHC.Show.Show Datatypes.Transacties
@@ -65,66 +73,19 @@ instance GHC.Classes.Eq Datatypes.Product
 instance GHC.Show.Show Datatypes.Product
 
 
--- | Module DatatypesOld bevat de oude versie van alle data om mee te
---   testen en debuggen. Deze waardes worden in het verloop van het project
---   vervangen voor de data in <tt>Datatypes</tt>.
-module DatatypesOld
-
--- | Product om mee te debuggen
-setA :: Set [Char]
-
--- | Product om mee te debuggen
-setB :: Set [Char]
-
--- | Product om mee te debuggen
-setC :: Set [Char]
-
--- | Product om mee te debuggen
-setD :: Set [Char]
-
--- | Product om mee te debuggen
-setE :: Set [Char]
-
--- | Product dat niet voorkomt in de transacties om mee te debuggen
-setF :: Set [Char]
-
--- | Geen product om mee te debuggen
-setG :: () => Set a
-
--- | Subset van een transactie om mee te debuggen
-setAB :: Set [Char]
-
--- | Subset van een transactie om mee te debuggen
-setDB :: Set [Char]
-
--- | Transactie om mee te debuggen
-setT1 :: Set [Char]
-
--- | Transactie om mee te debuggen
-setT2 :: Set [Char]
-
--- | Transactie om mee te debuggen
-setT3 :: Set [Char]
-
--- | Transacties om mee te debuggen
---   
---   Deze variabele moet een dataset simuleren.
-listTrans :: [Set [Char]]
-
-
 -- | Module Tools bevat alle hulpmiddelen om de hoofdfuncties in
 --   <tt>Lib</tt> te laten werken.
 module Tools
 
--- | Fold een lijst met transacties zodat alle unieke producten overblijven
+-- | Fold Transacties naar Transactie zodat alle unieke producten
+--   overblijven
 --   
 --   Fold was eerst zelf uitgeschreven: <tt> recursiveUnion (x:xs) = x
 --   `union` recursiveUnion xs </tt>
-recursiveUnion :: Ord a => [Set a] -> Set a
+recursiveUnion :: Transacties -> Transactie
 
--- | Veranderd een set van elementen naar een gesoorteerde lijst van (Set)
---   singletons
-setToListOfSets :: Ord a => Set a -> [Set a]
+-- | Veranderd Transactie naar een gesoorteerde lijst van Producten
+setToListOfSets :: Transactie -> [Product]
 
 -- | Deelt twee integers en geeft een float terug
 --   
@@ -138,6 +99,12 @@ floatDiv :: Int -> Int -> Double
 --   <a>stackoverflow.com/questions/52910840/haskell-finding-maximum-value-in-a-list-of-tuples</a>
 listOfTuplesMax :: Ord a => [(a, b)] -> (a, b)
 
+-- | Returned de vereniging van twee Transactie
+vereniging :: Transactie -> Transactie -> Transactie
+
+-- | Returned de intersectie van twee Transactie
+intersectie :: Transactie -> Transactie -> Transactie
+
 
 -- | Module Lib bevat de belangrijkste functies van aHaskellPriori.
 module Lib
@@ -148,41 +115,34 @@ module Lib
 --   <a>https://stackoverflow.com/questions/24234517/understanding-withfile-with-example</a>
 bestandLezen :: FilePath -> IO ()
 
--- | Berekend de support van één set: Support(X)
+-- | Berekend de support van één Transactie: Support(X)
 --   
---   De set X moet uit één of meerdere producten bestaan. Mocht setX leeg
---   zijn, dan is de support gelijk aan 0.0
-support :: Ord a => Set a -> [Set a] -> Double
+--   De Transactie X moet één of meerdere Product bevatten. Mocht
+--   Transactie X leeg zijn, dan is de support gelijk aan 0.0
+support :: Transactie -> Transacties -> Double
 
--- | Berekend de confidence van een set ten opzichte van een andere set:
---   Confidence(X -&gt; Y)
+-- | Berekend de confidence van een Product ten opzichte van een ander
+--   Product: Confidence(X -&gt; Y)
 --   
---   De sets X en Y moeten uit één of meerdere producten bestaan. Mocht een
---   van de sets leeg zijn, dan is de confidence 0.0. Mocht de support van
---   setX 0.0 zijn, dan is de confidence tevens 0.0. Op deze manier worden
---   zero division errors en NaN-waardes volkomen.
---   
---   De variabele <tt>supportX</tt> wordt aangemaakt zodat deze niet
---   opnieuw hoeft te worden berekend bij verschillende guards.
-confidence :: Ord a => Set a -> Set a -> [Set a] -> Double
+--   Mocht een van de Producten leeg zijn, dan is de confidence 0.0. Mocht
+--   de support van Product X 0.0 zijn, dan is de confidence tevens 0.0. Op
+--   deze manier worden zero division errors en NaN-waardes volkomen.
+confidence :: Product -> Product -> Transacties -> Double
 
--- | Berekend de lift van een set ten opzichte van een andere set: Lift(X
---   -&gt; Y)
+-- | Berekend de lift van een Product ten opzichte van een ander Product:
+--   Lift(X -&gt; Y)
 --   
---   De sets X en Y moeten uit één of meerdere producten bestaan. Mocht de
---   support van setY 0.0 zijn, dan is de confidence tevens 0.0. Op deze
---   manier worden zero division errors en NaN-waardes volkomen.
---   
---   De variabele <tt>supportY</tt> wordt aangemaakt zodat deze niet
---   opnieuw hoeft te worden berekend bij verschillende guards.
-lift :: Ord a => Set a -> Set a -> [Set a] -> Double
+--   Mocht de support van Product Y 0.0 zijn, dan is de confidence tevens
+--   0.0. Op deze manier worden zero division errors en NaN-waardes
+--   volkomen.
+lift :: Product -> Product -> Transacties -> Double
 
--- | Berekend de beste Y voor de formule: Lift(X -&gt; Y)
+-- | Berekend het beste Product Y voor de formule: Lift(X -&gt; Y)
 --   
---   Ondanks dat meerdere producten een even hoge lift kunnen hbeben met
+--   Ondanks dat meerdere producten een even hoge lift kunnen hebben met
 --   setX zal alleen de laatste (alfabetisch gesoorteerde) waarde worden
 --   weergegeven.
-bestLift :: Ord a => Set a -> [Set a] -> (Double, Set a)
+bestLift :: Product -> Transacties -> (Double, Product)
 
 
 -- | Module Matrix bevat alle code van de oude opzet voor het Apriori
@@ -197,11 +157,3 @@ setLen :: Set a -> Int
 -- | Genereerd een leeg matrix met de lengtes van het aantal unieke
 --   producten in een dataset
 emptySupportMatrix :: Num b => Set a -> Matrix b
-
--- | Berekend alle unieke combinaties tussen setX en transacties
-zipSupport :: Ord a1 => a2 -> [Set a1] -> [(a2, Set a1)]
-
--- | Berekend alle sets tussen setX en transacties Als er per product een
---   unionZip word berekend zijn er genoeg gegevens om het volledige matrix
---   te vullen.
-unionZip :: Ord a => Set a -> [Set a] -> [Set a]

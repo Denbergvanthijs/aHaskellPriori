@@ -6,20 +6,25 @@ module Datatypes where
 
 import              Data.Set                    (Set, fromList, singleton)
 
-newtype Product     = Product (Set String)      deriving (Show, Eq, Ord)
+newtype Product     = Product String            deriving (Show, Eq, Ord)
 newtype Transactie  = Transactie (Set Product)  deriving (Show, Eq, Ord)
 newtype Transacties = Transacties [Transactie]  deriving (Show, Eq, Ord)
 
+data KeuzeOutput = Waarde Double | WaardeProduct (Double, Product) | Foutief String deriving (Show)
+
 -- | Product om mee te debuggen
-prodA = Product $ singleton "Appel"
+prodA = Product "Appel"
 -- | Product om mee te debuggen
-prodB = Product $ singleton "Banaan"
+prodB = Product "Banaan"
 -- | Product om mee te debuggen
-prodC = Product $ singleton "Citroen"
+prodC = Product "Citroen"
 -- | Product om mee te debuggen
-prodD = Product $ singleton "Druif"
+prodD = Product "Druif"
 -- | Product om mee te debuggen
-prodE = Product $ singleton "Eggplant"
+prodE = Product "Eggplant"
+
+-- | Product dat niet voorkomt in de transacties om mee te debuggen
+prodF = Product "Fruitvliegjes"
 
 -- | Subset van een transactie om mee te debuggen
 transAB = Transactie $ fromList [prodA, prodB]
@@ -33,7 +38,7 @@ transT2 = Transactie $ fromList [prodB, prodC, prodE]
 -- | Transactie om mee te debuggen
 transT3 = Transactie $ fromList [prodA, prodE]
 
--- | Transacties om mee te debuggen
+-- | Lijst van Transactie om mee te debuggen
 --
 -- Deze variabele moet een dataset simuleren.
 alleTrans = Transacties [transT1, transT2, transT3]
