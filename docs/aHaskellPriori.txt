@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/Denbergvanthijs/aHaskellPriori#readme</a>
 @package aHaskellPriori
-@version 2019.10.28.1
+@version 2019.11.3.1
 
 
 -- | Module Datatypes bevat de nieuwe versie van alle data om mee te testen

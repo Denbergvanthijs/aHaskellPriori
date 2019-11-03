@@ -1,5 +1,8 @@
 # Changelog for aHaskellPriori
 
+## 2019.11.03.1
+- Mogelijk gemaakt om eigen bestanden te kunnen gebruiken voor aanbevelingen.
+
 ## 2019.10.28.1
 
 - `Datatypes.hs` werkend gekregen, `DatatypesOld.hs` is verwijderd
