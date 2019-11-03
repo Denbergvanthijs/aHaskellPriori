@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/Denbergvanthijs/aHaskellPriori#readme</a>
 @package aHaskellPriori
-@version 2019.11.3.1
+@version 2019.11.3.2
 
 
 -- | Module Datatypes bevat de nieuwe versie van alle data om mee te testen
@@ -13,15 +13,27 @@
 --   data in <tt>DatatypesOld</tt>. Op dit moment werkt deze data helaas
 --   nog niet met de functies uit <tt>Lib</tt>.
 module Datatypes
+
+-- | Het Product-datatype. Deze is opgebouwd uit één enkele string.
 newtype Product
 Product :: String -> Product
+
+-- | Het Transactie-datatype. Deze is opgebouwd uit een set van producten.
 newtype Transactie
 Transactie :: Set Product -> Transactie
+
+-- | Het Transacties-datatype. Deze is opgebouwd uit een lijst van één of
+--   meer Transactie.
 newtype Transacties
 Transacties :: [Transactie] -> Transacties
+
+-- | Het KeuzeOutput-datatype. Dit datatype wordt gebruikt om het resultaat
+--   van de gebruiker in <a>hs</a> goed te tonen.
 data KeuzeOutput
-Waarde :: Double -> KeuzeOutput
-WaardeProduct :: (Double, Product) -> KeuzeOutput
+Support :: Double -> KeuzeOutput
+Confidence :: Double -> KeuzeOutput
+Lift :: Double -> KeuzeOutput
+Combi :: (Double, Product) -> KeuzeOutput
 Foutief :: String -> KeuzeOutput
 
 -- | Product om mee te debuggen
@@ -143,6 +155,13 @@ lift :: Product -> Product -> Transacties -> Double
 --   setX zal alleen de laatste (alfabetisch gesoorteerde) waarde worden
 --   weergegeven.
 bestLift :: Product -> Transacties -> (Double, Product)
+
+-- | Berekend het hoogste Product X voor de formule: Support(X)
+--   
+--   Ondanks dat meerdere producten een even hoge support kunnen hebben zal
+--   alleen de laatste (alfabetisch gesoorteerde) waarde worden
+--   weergegeven.
+bestSupport :: Transacties -> (Double, Product)
 
 
 -- | Module Matrix bevat alle code van de oude opzet voor het Apriori

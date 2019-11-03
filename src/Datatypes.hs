@@ -6,11 +6,17 @@ module Datatypes where
 
 import              Data.Set                    (Set, fromList, singleton)
 
+-- | Het Product-datatype. Deze is opgebouwd uit één enkele string.
 newtype Product     = Product String            deriving (Show, Eq, Ord)
+
+-- | Het Transactie-datatype. Deze is opgebouwd uit een set van producten.
 newtype Transactie  = Transactie (Set Product)  deriving (Show, Eq, Ord)
+
+-- | Het Transacties-datatype. Deze is opgebouwd uit een lijst van één of meer Transactie.
 newtype Transacties = Transacties [Transactie]  deriving (Show, Eq, Ord)
 
-data KeuzeOutput = Waarde Double | WaardeProduct (Double, Product) | Foutief String deriving (Show)
+-- | Het KeuzeOutput-datatype. Dit datatype wordt gebruikt om het resultaat van de gebruiker in `Main.hs` goed te tonen.
+data KeuzeOutput = Support Double | Confidence Double | Lift Double | Combi (Double, Product) | Foutief String deriving (Show)
 
 -- | Product om mee te debuggen
 prodA = Product "Appel"

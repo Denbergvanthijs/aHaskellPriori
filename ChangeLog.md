@@ -1,7 +1,16 @@
 # Changelog for aHaskellPriori
 
+## 2019.11.03.2
+
+- Confidence met een onbekend productA wordt nu `0.0` i.p.v. `NaN`
+- Formatting van enkele bestanden
+- Keuze `5` toegevoegd om het populairste product van de dataset te tonen
+- Deprecated code van `Matrix.hs` iets netter gemaakt. Deze code dient geen nut maar blijft bewaard om de geïnvesteerde tijd aan te tonen.
+- Spelfouten uit `ChangeLog.md` en `README.md` aangepast.
+
 ## 2019.11.03.1
-- Mogelijk gemaakt om eigen bestanden te kunnen gebruiken voor aanbevelingen.
+
+- Mogelijk gemaakt om eigen bestanden te kunnen gebruiken voor aanbevelingen
 
 ## 2019.10.28.1
 
@@ -14,7 +23,7 @@
 
 - Documentatie gemaakt voor alle bestanden in `src/`
 - Guards toegevoegd aan `Lib` zodat foute waardes worden afgevangen
-- Imports in `Tools` en andere bestanden verbeterd en efficienter gemaakt
+- Imports in `Tools` en andere bestanden verbeterd en efficiënter gemaakt
 
 ## 2019.10.26.2
 
@@ -42,7 +51,7 @@
 - Typedeclaraties verbeterd van o.a. setToAscList en setToListOfSets
 - Debugdata in `main.hs` realistischer gemaakt
 - File `Tools.hs` aangemaakt om de daadwerkelijke berekeningen van de minder belangrijke functies te scheiden
-- Imports verbeterd: Set.Set a is nu Set a bijvoorbeeld 
+- Imports verbeterd: Set.Set a is nu Set a bijvoorbeeld
 
 ## 2019.10.22.1
 
@@ -69,4 +78,4 @@ verschillende matrixen.
 - Met `emptySupportMatrix` kan een lege matrix worden gemaakt met de lengte en breedte van het totaal
 aantal unieke producten. Het totaal aantal unieke producten wordt berekend door de functie `setLen`.
 - Packages `containers` en `matrix` toegevoegd aan `package.yaml`.
-- Bronvermelding toegevoegd aan `README.md`.
+- Bronvermelding toegevoegd aan `README.md`

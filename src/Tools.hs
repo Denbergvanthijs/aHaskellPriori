@@ -2,10 +2,10 @@
 
 module Tools where
 
-import           Data.Set hiding (foldr)
-import           Data.List (foldr, maximumBy)
 import           Data.Function (on)
-import           Data.Ord (comparing)
+import           Data.List     (foldr, maximumBy)
+import           Data.Ord      (comparing)
+import           Data.Set      hiding (foldr)
 import           Datatypes
 
 -- | Fold Transacties naar Transactie zodat alle unieke producten overblijven
