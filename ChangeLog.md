@@ -1,5 +1,11 @@
 # Changelog for aHaskellPriori
 
+## 2019.11.10.2
+
+- Type-declarations toegevoegd aan de debug-waardes
+- Imports opgeschoond
+- Aangegeven dat `bestandLezen` verouderd is en niet meer wordt gebruikt
+
 ## 2019.11.10.1
 
 - Menu herschreven, twee functies verplaatst naar `Tools.hs`

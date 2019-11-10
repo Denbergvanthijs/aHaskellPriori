@@ -7,11 +7,10 @@ import           Tools
 
 import           System.IO
 
-import qualified Data.List as List
-import qualified Data.Ord  as Ord
 import           Data.Set  (empty, singleton)
 
 -- | Leest een bestand in en print iedere regel
+-- Deze functie is een oude versie en wordt niet meer gebruikt
 --
 --  Credits: <https://stackoverflow.com/questions/24234517/understanding-withfile-with-example>
 bestandLezen :: FilePath -> IO ()

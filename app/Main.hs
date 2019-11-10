@@ -1,7 +1,6 @@
 module Main where
 
-import           Data.List.Split (splitOn)
-import           Data.Set        (Set, fromList, singleton)
+import           Data.Set        (singleton)
 import           Datatypes
 import           Lib
 import           Tools

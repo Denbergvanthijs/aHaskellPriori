@@ -14,6 +14,7 @@ Het script kan uitgevoerd worden door `stack ghci` en vervolgens `main` uit te v
 
 TODO:
 
+- Functoren implementeren om enkele functies leesbaarder te maken
 - Zorgen dat `bestLift` meerdere producten returned als de lift hetzelfde is.
 - Zorgen dat `bestLift` iets anders returned wanneer gebruiker gebruiker geen of niet bestaand product invoerd.
 - Maybe implementeren voor `support`, `confidence` en `lift` wanneer de invoer geen (geldig) product is.

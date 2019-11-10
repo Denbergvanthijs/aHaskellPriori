@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/Denbergvanthijs/aHaskellPriori#readme</a>
 @package aHaskellPriori
-@version 2019.11.10.1
+@version 2019.11.10.2
 
 
 -- | Module Datatypes bevat de nieuwe versie van alle data om mee te testen
@@ -131,7 +131,8 @@ bestandTrans :: [[String]] -> Transacties
 -- | Module Lib bevat de belangrijkste functies van aHaskellPriori.
 module Lib
 
--- | Leest een bestand in en print iedere regel
+-- | Leest een bestand in en print iedere regel Deze functie is een oude
+--   versie en wordt niet meer gebruikt
 --   
 --   Credits:
 --   <a>https://stackoverflow.com/questions/24234517/understanding-withfile-with-example</a>
