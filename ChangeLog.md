@@ -1,12 +1,17 @@
 # Changelog for aHaskellPriori
 
+## 2019.11.10.1
+
+- Menu herschreven, twee functies verplaatst naar `Tools.hs`
+- Formatting verbeterd
+
 ## 2019.11.03.2
 
 - Confidence met een onbekend productA wordt nu `0.0` i.p.v. `NaN`
 - Formatting van enkele bestanden
 - Keuze `5` toegevoegd om het populairste product van de dataset te tonen
-- Deprecated code van `Matrix.hs` iets netter gemaakt. Deze code dient geen nut maar blijft bewaard om de geïnvesteerde tijd aan te tonen.
-- Spelfouten uit `ChangeLog.md` en `README.md` aangepast.
+- Deprecated code van `Matrix.hs` iets netter gemaakt. Deze code dient geen nut maar blijft bewaard om de geïnvesteerde tijd aan te tonen
+- Spelfouten uit `ChangeLog.md` en `README.md` aangepast
 
 ## 2019.11.03.1
 
@@ -70,12 +75,12 @@
 - Dataset en bronvermelding toegevoegd
 - Kortere dataset aangemaakt, sneller voor debuggen
 - Datasets kunnen worden uitgelezen met functie `bestandLezen`
-- Alle unieke items van de transacties kunnen worden berekend door `recursiveUnion`.
-Als input wordt gevraagd naar een lijst van sets. Iedere set representeert een transactie.
-- De unieke set kan worden omgezet naar een oplopend gesorteerde lijst met de functie `setToAscList`.
+- Alle unieke items van de transacties kunnen worden berekend door `recursiveUnion`
+Als input wordt gevraagd naar een lijst van sets. Iedere set representeert een transactie
+- De unieke set kan worden omgezet naar een oplopend gesorteerde lijst met de functie `setToAscList`
 Hierdoor wordt het mogelijk om de producten te vinden die horen bij een bepaalde index in de
-verschillende matrixen.
+verschillende matrixen
 - Met `emptySupportMatrix` kan een lege matrix worden gemaakt met de lengte en breedte van het totaal
-aantal unieke producten. Het totaal aantal unieke producten wordt berekend door de functie `setLen`.
-- Packages `containers` en `matrix` toegevoegd aan `package.yaml`.
+aantal unieke producten. Het totaal aantal unieke producten wordt berekend door de functie `setLen`
+- Packages `containers` en `matrix` toegevoegd aan `package.yaml`
 - Bronvermelding toegevoegd aan `README.md`

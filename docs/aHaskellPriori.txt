@@ -5,7 +5,7 @@
 -- | Please see the README on GitHub at
 --   <a>https://github.com/Denbergvanthijs/aHaskellPriori#readme</a>
 @package aHaskellPriori
-@version 2019.11.3.2
+@version 2019.11.10.1
 
 
 -- | Module Datatypes bevat de nieuwe versie van alle data om mee te testen
@@ -116,6 +116,16 @@ vereniging :: Transactie -> Transactie -> Transactie
 
 -- | Returned de intersectie van twee Transactie
 intersectie :: Transactie -> Transactie -> Transactie
+
+-- | Zet een csv-bestand om naar een bestand met lijsten van Strings. Naast
+--   een bestand wordt er gevraagd naar een separator. Dit maakt de functie
+--   inzetbaar voor verschillende bestanden.
+bestandSplit :: String -> String -> [[String]]
+
+-- | Zet een bestand met lijsten van Strings om naar het
+--   Transacties-datatype. Iedere lijst van Strings wordt eerst een
+--   Transactie met Producten.
+bestandTrans :: [[String]] -> Transacties
 
 
 -- | Module Lib bevat de belangrijkste functies van aHaskellPriori.

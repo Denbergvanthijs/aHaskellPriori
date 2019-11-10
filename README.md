@@ -1,12 +1,16 @@
 # aHaskellPriori
 
-Apriori algorithm in Haskell
+## Apriori algorithm in Haskell
+
+© [Thijs van den Berg](https://github.com/Denbergvanthijs/)
+
+***
 
 De documentatie is te vinden in `docs/index.html`.
 Deze is aan te maken via `stack haddock --haddock-arguments "-o docs"`
 Het script kan uitgevoerd worden door `stack ghci` en vervolgens `main` uit te voeren.
 
-==========
+***
 
 TODO:
 
@@ -15,11 +19,10 @@ TODO:
 - Maybe implementeren voor `support`, `confidence` en `lift` wanneer de invoer geen (geldig) product is.
 - Tests schrijven voor `support`, `confidence` en `lift`.
 - Alle mogelijke producten netter printen in `main`.
-- List comprehensions in `main` netter maken.
 - Zorgen dat een foutieve keuze direct het programma stopt.
 - While True-loop introduceren zodat gebruiker niet opnieuw de locatie van de dataset hoeft op te geven.
 
-© [Thijs van den Berg](https://github.com/Denbergvanthijs/)
+***
 
 ## Werking Apriori algoritme
 

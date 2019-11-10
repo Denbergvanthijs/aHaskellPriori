@@ -2,6 +2,7 @@
 
 module Tools where
 
+import           Data.List.Split (splitOn)
 import           Data.Function (on)
 import           Data.List     (foldr, maximumBy)
 import           Data.Ord      (comparing)
@@ -38,3 +39,13 @@ vereniging (Transactie set1) (Transactie set2) = Transactie $ union set1 set2
 -- | Returned de intersectie van twee Transactie
 intersectie :: Transactie -> Transactie -> Transactie
 intersectie (Transactie set1) (Transactie set2) = Transactie $ intersection set1 set2
+
+-- | Zet een csv-bestand om naar een bestand met lijsten van Strings.
+-- Naast een bestand wordt er gevraagd naar een separator. Dit maakt de functie inzetbaar voor verschillende bestanden.
+bestandSplit :: String -> String -> [[String]]
+bestandSplit file sep = [splitOn sep t | t <- lines file]
+
+-- | Zet een bestand met lijsten van Strings om naar het Transacties-datatype.
+-- Iedere lijst van Strings wordt eerst een Transactie met Producten.
+bestandTrans :: [[String]] -> Transacties
+bestandTrans file = Transacties [Transactie $ fromList [Product p | p <- t] | t <- file]

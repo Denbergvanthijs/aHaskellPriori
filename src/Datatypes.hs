@@ -4,7 +4,7 @@
 
 module Datatypes where
 
-import              Data.Set                    (Set, fromList, singleton)
+import           Data.Set                    (Set, fromList, singleton)
 
 -- | Het Product-datatype. Deze is opgebouwd uit één enkele string.
 newtype Product     = Product String            deriving (Show, Eq, Ord)
